@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Todo List</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <script src="script.js"></script>
+        
+        <h1>My Todo List</h1>
+
+        <!-- input section -->
+        <input type="text" id="todoInput" placeholder="Enter a task...">
+        <button id="addBtn">Add Task</button>
+
+        <div id="todoList">
+            <p>No tasks yet!</p>
+        </div>
+
+        <script>
+            const todoInput = document.getElementById('todoInput');
+            const addBtn = document.getElementById('addBtn');
+            const todoList = document.getElementById('todoList');
+
+            addBtn.addEventListener('click', function() {
+                const taskText = todoInput.value;
+
+                if (taskText.trim() === '') {
+                    alert('Please enter a task!');
+                    return;
+                }
+
+                const taskElement = document.createElement('p');
+                taskElement.textContent = taskText;
+
+                todoList.appendChild(taskElement);
+
+                todoInput.value = '';
+            });
+        </script>
+    </body>
+</html>
+
+<!-- continue on step 5 -->
