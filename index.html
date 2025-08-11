@@ -9,14 +9,18 @@
     <body>
         <script src="script.js"></script>
         
-        <h1>My Todo List</h1>
+        <div class="container">
+            <h1>My Todo List</h1>
 
-        <!-- input section -->
-        <input type="text" id="todoInput" placeholder="Enter a task...">
-        <button id="addBtn">Add Task</button>
+            <!-- input section -->
+            <div class="input-section">
+                <input type="text" id="todoInput" placeholder="Enter a task...">
+                <button id="addBtn">Add Task</button>
+            </div>
 
-        <div id="todoList">
-            <p>No tasks yet!</p>
+            <div id="todoList">
+                <div class="empty-message">No tasks yet!</div>
+            </div>
         </div>
 
         <script>
@@ -87,6 +91,10 @@
                 const taskItem = document.createElement('div');
                 taskItem.className = 'task-item';
 
+                // create left wrapper for checkbox and task text
+                const taskLeft = document.createElement('div');
+                taskLeft.className = 'task-left';
+
                 // checkbox
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
@@ -119,9 +127,12 @@
                     displayAllTasks();
                 });
 
-                // add checkbox, task and button to container
-                taskItem.appendChild(checkbox);
-                taskItem.appendChild(taskTextElement);
+                // add checkbox and task text to left wrapper
+                taskLeft.appendChild(checkbox);
+                taskLeft.appendChild(taskTextElement);
+
+                // add left wrapper and delete button to task item
+                taskItem.appendChild(taskLeft);
                 taskItem.appendChild(deleteBtn);
 
                 // add task to list
@@ -131,4 +142,4 @@
     </body>
 </html>
 
-<!-- continue on step  -->
+<!-- continue on step 10-->
