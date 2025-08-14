@@ -3,7 +3,7 @@ body {
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #000000 0%, #666666 100%);
     min-height: 100vh;
 }
 
@@ -44,7 +44,7 @@ h1 {
 #addBtn {
     padding: 15px 25px;
     font-size: 16px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: black;
     color: white;
     border: none;
     border-radius: 8px;
