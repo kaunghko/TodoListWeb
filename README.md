@@ -1,1 +1,1 @@
-Just a personal learning space.
+Just a personal learning space. Practing the use of AI in coding.

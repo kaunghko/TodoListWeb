@@ -41,6 +41,22 @@ h1 {
     border-color: #667eea;
 }
 
+#categorySelect {
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    min-width: 120px;
+}
+
+#categorySelect:focus {
+    border-color: #667eea;
+}
+
 #addBtn {
     padding: 15px 25px;
     font-size: 16px;
@@ -58,6 +74,29 @@ h1 {
 
 #todoList {
     margin-top: 20px;
+}
+
+.category-section {
+    margin-bottom: 30px;
+}
+
+.category-header {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
+    position: relative;
+}
+
+.category-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #667eea;
 }
 
 .task-item {

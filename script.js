@@ -1,6 +1,7 @@
 const todoInput = document.getElementById('todoInput');
             const addBtn = document.getElementById('addBtn');
             const todoList = document.getElementById('todoList');
+            const categorySelect = document.getElementById('categorySelect');
 
             let tasks = [];
 
@@ -29,13 +30,48 @@ const todoInput = document.getElementById('todoInput');
             function displayAllTasks() {
                 todoList.innerHTML = '';
 
-                tasks.forEach(function(task, index) {
-                    createTaskElement(task, index);
-                })
+                if (tasks.length === 0) {
+                    todoList.innerHTML = '<div class="empty-message">No tasks yet!</div>';
+                    return;
+                }
+
+                // Group tasks by category
+                const academicTasks = tasks.filter(task => task.category === 'Academic');
+                const personalTasks = tasks.filter(task => task.category === 'Personal');
+
+                // Display Academic tasks
+                if (academicTasks.length > 0) {
+                    const academicSection = createCategorySection('Academic', academicTasks);
+                    todoList.appendChild(academicSection);
+                }
+
+                // Display Personal tasks
+                if (personalTasks.length > 0) {
+                    const personalSection = createCategorySection('Personal', personalTasks);
+                    todoList.appendChild(personalSection);
+                }
+            }
+
+            function createCategorySection(categoryName, categoryTasks) {
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const header = document.createElement('h3');
+                header.className = 'category-header';
+                header.textContent = categoryName;
+                section.appendChild(header);
+
+                categoryTasks.forEach(function(task, index) {
+                    const globalIndex = tasks.indexOf(task);
+                    createTaskElement(task, globalIndex, section);
+                });
+
+                return section;
             }
 
             function addTask() {
                 const taskText = todoInput.value;
+                const category = categorySelect.value;
 
                 if (taskText.trim() === '') {
                     alert('Please enter a task!');
@@ -44,7 +80,8 @@ const todoInput = document.getElementById('todoInput');
 
                 const newTask = {
                     text: taskText,
-                    completed: false
+                    completed: false,
+                    category: category
                 };
                 
                 // add to tasks array
@@ -60,7 +97,7 @@ const todoInput = document.getElementById('todoInput');
                 todoInput.value = '';
             }
 
-            function createTaskElement(task, index) {
+            function createTaskElement(task, index, parentElement) {
                 // division for task
                 const taskItem = document.createElement('div');
                 taskItem.className = 'task-item';
@@ -109,6 +146,10 @@ const todoInput = document.getElementById('todoInput');
                 taskItem.appendChild(taskLeft);
                 taskItem.appendChild(deleteBtn);
 
-                // add task to list
-                todoList.appendChild(taskItem);
+                // add task to parent element (either todoList or category section)
+                if (parentElement) {
+                    parentElement.appendChild(taskItem);
+                } else {
+                    todoList.appendChild(taskItem);
+                }
             }
